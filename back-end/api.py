@@ -1,6 +1,7 @@
 import json
 from fastapi import FastAPI
 import uvicorn
+from posts import Sticker
 
 
 app = FastAPI()
@@ -16,5 +17,14 @@ def data():
     file.close()
     return JSONdata
 
+def write_json(new_data, filename='data.json'):
+    with open('data.json', 'r+') as file:
+        file_data = json.load(file)
+        file_data.append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent = 4)
+
+
 if __name__ == '__main__':
     uvicorn.run('api:app', reload=True)
+    

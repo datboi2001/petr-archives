@@ -1,9 +1,37 @@
-[{
-    "name": "",
-    "image_link": "",
-    "date": "",
-    "time": "",
-    "location": "",
-    "instagram": ""
-  }
+[
+    {
+        "name": "KitKat Petr",
+        "image_link": "",
+        "timestamp": "10/28/22",
+        "location": "Aldrich Park",
+        "instagram": "petr_philes"
+    },
+    {
+        "name": "Sanrio Petr",
+        "image_link": "",
+        "timestamp": "11/5/22",
+        "location": "student center",
+        "instagram": "sweet_petr"
+    },
+    {
+        "name": "UC Urvine Sweatr petr",
+        "image_link": "",
+        "timestamp": "8/30/22",
+        "location": "humanities gateway",
+        "instagram": "petr_the_harbingr"
+    },
+    {
+        "name": "ZotBites",
+        "image_link": "",
+        "timestamp": "11/7/22",
+        "location": "Fresh Basic Needs",
+        "instagram": "petr_the_harbingr"
+    },
+    {
+      "name": "Ponyo Petr",
+      "image_link": "",
+      "timestamp": "11/3/22",
+      "location": "Aldrich Park",
+      "instagram": "togepi.petr"
+    }
 ]
