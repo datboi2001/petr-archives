@@ -1,5 +1,6 @@
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile
+from posts import Sticker
 import uvicorn
 
 
@@ -15,6 +16,11 @@ def data():
     JSONdata = json.load(file)
     file.close()
     return JSONdata
+
+@app.post("/create-sticker")
+def create_new_sticker(sticker: Sticker, file: UploadFile):
+    pass
+
 
 if __name__ == '__main__':
     uvicorn.run('api:app', reload=True)
