@@ -3,8 +3,17 @@ from fastapi import FastAPI, UploadFile, Body, Form, HTTPException
 import uvicorn
 from posts import Sticker
 from uploadCloudinary import settings, cloudinaryUpload
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins="*",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 @app.get("/")
 def home():
