@@ -1,8 +1,8 @@
 import json
-from fastapi import FastAPI, UploadFile
+from fastapi import FastAPI, UploadFile, Body, Form, HTTPException
 import uvicorn
 from posts import Sticker
-
+from uploadCloudinary import settings, cloudinaryUpload
 
 app = FastAPI()
 
@@ -17,16 +17,27 @@ def data():
     file.close()
     return JSONdata
 
-@app.post("/create-sticker")
-def create_new_sticker(sticker: Sticker, file: UploadFile):
-    pass
-
 def write_json(new_data, filename='data.json'):
     with open('data.json', 'r+') as file:
         file_data = json.load(file)
         file_data.append(new_data)
         file.seek(0)
         json.dump(file_data, file, indent = 4)
+
+@app.post("/create-sticker")
+def create_new_sticker(file: UploadFile, name: str = Form(""), timestamp: str = Form(""), 
+     location: str = Form(""), instagram: str = Form("")):
+    try:
+        contentType = file.content_type
+        contents = file.file.read()
+        url = cloudinaryUpload(contents, contentType)
+        stickerDict = {"name": name.title(), "image_link": url, "timestamp": timestamp, "location": location.title(), "instagram": f"http://www.instagram.com/{instagram}"}
+        write_json(stickerDict)
+        return {"status": "OK"}
+    except Exception as E: 
+        raise E
+
+
 
 
 
