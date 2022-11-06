@@ -1,5 +1,5 @@
 import json
-from fastapi import FastAPI, UploadFile, Body, Form, HTTPException
+from fastapi import FastAPI, UploadFile, Body, Form, HTTPException, File
 import uvicorn
 from posts import Sticker
 from uploadCloudinary import settings, cloudinaryUpload
@@ -34,7 +34,7 @@ def write_json(new_data, filename='data.json'):
         json.dump(file_data, file, indent = 4)
 
 @app.post("/create-sticker")
-def create_new_sticker(file: UploadFile, name: str = Form(""), timestamp: str = Form(""), 
+def create_new_sticker(file: UploadFile = File(...), name: str = Form(""), timestamp: str = Form(""), 
      location: str = Form(""), instagram: str = Form("")):
     try:
         contentType = file.content_type

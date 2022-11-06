@@ -17,7 +17,6 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-
 import cloudinary.uploader
 import cloudinary.api
 
