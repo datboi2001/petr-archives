@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import Stack from '@mui/material/Stack';
 import { TextField, Grid, Button } from '@mui/material';
@@ -9,6 +9,11 @@ import styles from './PetrForm.module.css';
 
 const PetrForm = () => {
     const [value, setValue] = useState(dayjs(new Date()));
+    const [formData, setFormData] = useState({
+        'petr-name': '',
+        'ig-handle': '',
+        'petr-location': '',
+    });
 
     const handleChange = (newValue) => {
         setValue(newValue);
@@ -26,6 +31,12 @@ const PetrForm = () => {
         setIsFilePicked(false);
     };
 
+    const onChange = (event) => {
+        setFormData((curState) => {
+            return { ...curState, [event.target.name]: event.target.value };
+        });
+    };
+
     return (
         <div className={styles['petr-form']}>
             <h1 className={styles.title}>Submit a New Petr Drop</h1>
@@ -40,7 +51,7 @@ const PetrForm = () => {
                 <Grid item xs={6} className={styles['text-field']}>
                     <TextField
                         required
-                        id="standard-basic"
+                        name="petr-name"
                         className={styles['form-field']}
                         label="PETR Name"
                         variant="filled"
@@ -50,7 +61,7 @@ const PetrForm = () => {
                 <Grid item xs={6}>
                     <TextField
                         required
-                        id="standard-basic"
+                        name="ig-handle"
                         className={styles['text-field']}
                         label="Instagram Handle"
                         variant="filled"
@@ -74,11 +85,12 @@ const PetrForm = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <TextField
-                        id="standard-basic"
+                        required
+                        name="petr-location"
                         className={styles['text-field']}
-                        label="Link to Instagram Post"
+                        label="Location of Petr drop"
                         variant="filled"
-                        helperText="Please link the PETR Instagram post (optional)"
+                        helperText="Please provide the location of the Petr drop"
                     />
                 </Grid>
             </Grid>
@@ -126,8 +138,33 @@ const PetrForm = () => {
             <Button
                 id={styles.submit}
                 variant="contained"
-                onClick={() => {
-                    alert('clicked');
+                onClick={(event) => {
+                    event.preventDefault();
+                    const inputData = new FormData();
+                    inputData.append('file', selectedFile);
+                    inputData.append('name', formData['petr-name']);
+                    const formattedDate =
+                        value['$d'].getMonth() +
+                        '/' +
+                        value['$d'].getDate() +
+                        '/' +
+                        value['$d'].getFullYear();
+                    inputData.append('timestamp', formattedDate);
+                    inputData.append('location', formData['petr-location']);
+                    inputData.append('instagram', formData['ig-handle']);
+
+                    fetch('http://localhost:8000/create-sticker', {
+                        method: 'POST',
+                        mode: 'cors',
+                        body: inputData,
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            alert('Success');
+                        })
+                        .catch((err) => {
+                            console.error('Error: ', err);
+                        });
                 }}
             >
                 Submit

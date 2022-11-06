@@ -6,3 +6,9 @@
 .gallery-div {
     margin: 1em;
 }
+
+.lstOfImages {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
