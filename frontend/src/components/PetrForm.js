@@ -37,6 +37,8 @@ const PetrForm = () => {
         });
     };
 
+    console.log(selectedFile);
+
     return (
         <div className={styles['petr-form']}>
             <h1 className={styles.title}>Submit a New Petr Drop</h1>
@@ -56,6 +58,7 @@ const PetrForm = () => {
                         label="PETR Name"
                         variant="filled"
                         helperText="Please enter the name of the PETR design"
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid item xs={6}>
@@ -66,6 +69,7 @@ const PetrForm = () => {
                         label="Instagram Handle"
                         variant="filled"
                         helperText="Please enter the PETR creator's Instagram handle"
+                        onChange={onChange}
                     />
                 </Grid>
                 <Grid id={styles['date-picker']} item xs={6}>
@@ -91,6 +95,7 @@ const PetrForm = () => {
                         label="Location of Petr drop"
                         variant="filled"
                         helperText="Please provide the location of the Petr drop"
+                        onChange={onChange}
                     />
                 </Grid>
             </Grid>
@@ -141,7 +146,7 @@ const PetrForm = () => {
                 onClick={(event) => {
                     event.preventDefault();
                     const inputData = new FormData();
-                    inputData.append('file', selectedFile);
+                    inputData.append('file', selectedFile, selectedFile.name);
                     inputData.append('name', formData['petr-name']);
                     const formattedDate =
                         value['$d'].getMonth() +
@@ -152,10 +157,10 @@ const PetrForm = () => {
                     inputData.append('timestamp', formattedDate);
                     inputData.append('location', formData['petr-location']);
                     inputData.append('instagram', formData['ig-handle']);
+                    console.log(inputData);
 
                     fetch('http://localhost:8000/create-sticker', {
                         method: 'POST',
-                        mode: 'cors',
                         body: inputData,
                     })
                         .then((response) => response.json())
