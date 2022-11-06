@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@mui/material';
 import { Link as RRLink } from 'react-router-dom';
-import logo from '../assets/petrarchives.png';
+import logo from '../assets/petr-archives-logo.png';
 import styles from './NavBar.module.css';
 
 const NavBar = () => {

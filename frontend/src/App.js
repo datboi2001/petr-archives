@@ -11,7 +11,6 @@ function App() {
             <BrowserRouter>
                 <div className="App">
                     <NavBar />
-
                     <Routes>
                         <Route path="/" element={<Gallery />} />
                         <Route path="/submit" element={<PetrForm />} />
