@@ -10,10 +10,6 @@
     text-align: center;
 }
 
-.date-stack {
-    max-width: 17em;
-}
-
 .file-picker {
     display: flex;
     flex-direction: column;

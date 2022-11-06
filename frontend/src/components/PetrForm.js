@@ -47,11 +47,11 @@ const PetrForm = () => {
                         helperText="Please enter the name of the PETR design"
                     />
                 </Grid>
-                <Grid item xs={6} className={styles['text-field']}>
+                <Grid item xs={6}>
                     <TextField
                         required
                         id="standard-basic"
-                        className={styles['form-field']}
+                        className={styles['text-field']}
                         label="Instagram Handle"
                         variant="filled"
                         helperText="Please enter the PETR creator's Instagram handle"
@@ -72,10 +72,10 @@ const PetrForm = () => {
                         </Stack>
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={6} className={styles['text-field']}>
+                <Grid item xs={6}>
                     <TextField
                         id="standard-basic"
-                        className={styles['form-field']}
+                        className={styles['text-field']}
                         label="Link to Instagram Post"
                         variant="filled"
                         helperText="Please link the PETR Instagram post (optional)"
