@@ -1,0 +1,44 @@
+.petr-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em;
+}
+
+.title {
+    text-align: center;
+}
+
+.file-picker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+    margin-top: 2em;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30em;
+}
+
+#submit {
+    min-width: 17em;
+    margin-top: 2em;
+}
+
+#file-selection {
+    max-width: 17em;
+}
+
+.file-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

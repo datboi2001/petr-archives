@@ -1,0 +1,24 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0064a4;
+}
+
+.logo {
+    width: 13em;
+    margin-left: 1.5em;
+}
+
+.submit-div {
+    color: white;
+    margin-right: 1.5em;
+}
+
+.submit-nav {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
